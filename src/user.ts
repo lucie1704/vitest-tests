@@ -16,12 +16,13 @@ export class User {
     this.password = password;
   }
 
-  private isValidEmail(email: string): boolean {
+  isValidEmail(email: string = this.email): boolean {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   }
 
-  private isOver13(birthDate: Date): boolean {
+  isOver13(birthDate: Date = this.birthDate): boolean {
+    console.log(birthDate);
     const today = new Date();
     const age = today.getFullYear() - birthDate.getFullYear();
     const monthDifference = today.getMonth() - birthDate.getMonth();
@@ -33,7 +34,7 @@ export class User {
     return age >= 13;
   }
 
-  isValidPassword(password : string) : boolean {
+  isValidPassword(password : string = this.password) : boolean {
     if (password.length < 8 || password.length > 40) {
       return false;
     }
@@ -53,10 +54,11 @@ export class User {
            this.isValidPassword(this.password);
   }
 
-  createToDoList(): void {
-    //si user isValid && n'a pas déjà une toDoList
+  createToDoList(): boolean|ToDoList {
     if(this.isValid() && this.toDoList == undefined){
       this.toDoList = new ToDoList();
+      return this.toDoList;
     }
+    return false;
   }
 }
