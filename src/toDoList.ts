@@ -11,9 +11,9 @@ export class ToDoList {
   isCreatedWithinLast30Minutes(item: Item): boolean {
     const now: Date = new Date();
     const createdAt: Date = new Date(item.createdAt);
-    const diffInMs: number = now.getTime() - createdAt.getTime();
-    const diffInMinutes: number = diffInMs / (1000 * 60);
-    return diffInMinutes <= 30;
+    const difference: number = now.getTime() - createdAt.getTime();
+    const differenceInMinutes: number = difference / (1000 * 60);
+    return differenceInMinutes <= 30;
   }
 
   canAddItem(): boolean {
