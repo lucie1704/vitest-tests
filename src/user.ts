@@ -22,7 +22,6 @@ export class User {
   }
 
   isOver13(birthDate: Date = this.birthDate): boolean {
-    console.log(birthDate);
     const today = new Date();
     const age = today.getFullYear() - birthDate.getFullYear();
     const monthDifference = today.getMonth() - birthDate.getMonth();
