@@ -54,6 +54,14 @@ describe('ToDoList', () => {
         expect(validUser.toDoList?.canAddItem()).toBe(false);
     })
 
+    it('should throw error on saveItem', () => {
+        expect(() => validUser.toDoList?.saveItem()).toThrowError('save item');
+    });
+
+    it('should save on addItem', () => {
+        expect(() => validUser.toDoList?.addItem(validItem, validUser.isValid())).toThrowError('save item');
+    });
+
     it('should not add item if last item was added less than 30 minutes ago', () => {
         const mockItem = new Item('Titre', 'content');
         const createdAt = new Date(today.getTime() - 20 * 60 * 1000);
@@ -68,14 +76,6 @@ describe('ToDoList', () => {
         vi.spyOn(validItem, 'createdAt', 'get').mockReturnValue(createdAt);
         validUser.toDoList?.listItems.push(validItem);
         expect(() => validUser.toDoList?.addItem(mockItem, validUser.isValid())).toThrowError('save item');
-    });
-
-    it('should throw error on saveItem', () => {
-        expect(() => validUser.toDoList?.saveItem()).toThrowError('save item');
-    });
-
-    it('should save on addItem', () => {
-        expect(() => validUser.toDoList?.addItem(validItem, validUser.isValid())).toThrowError('save item');
     });
 
     it('should not add item if toDoList has 10 items', () => {
