@@ -26,9 +26,8 @@ describe('User Class', () => {
 
 
   ///////
-  it('should be true because age is 13', () => {
-    const user = new User('example@example.com', 'John', 'Doe', new Date('2000-01-01'));
-    const user = new User(valid)
+  it('should be true because age is over 13', () => {
+    const user = new User(validEmail, validFirstname, validName, validBirthDate, validPassword);
     expect(user.isValid()).toBe(true);
   });
 
