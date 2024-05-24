@@ -17,7 +17,7 @@ export class ToDoList {
   }
 
   canAddItem(): boolean {
-    return this.listItems.some(item => !this.isCreatedWithinLast30Minutes(item)) ? false : true
+    return this.listItems.some(item => this.isCreatedWithinLast30Minutes(item)) ? false : true
   }
 
   addItem(item: Item, validUser: boolean): void {
@@ -27,10 +27,14 @@ export class ToDoList {
       && this.listItems.length < 10
       && this.canAddItem()
     ){
-      this.listItems.push(item);
+      this.saveItem();
     }
     else {
       throw new Error('cant add item');
     }
+  }
+
+  saveItem() {
+    throw new Error('save item');
   }
 }
